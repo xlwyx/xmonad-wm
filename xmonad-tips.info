@@ -1,0 +1,24 @@
+# Preparation:
+
+-- install --
+xmonad xmonad-contrib xterm xscreensaver imagemagick feh lxappearance arc-theme papirus-icon-theme opendoas hddtemp pcmanfm kitty picom
+
+
+-- begain Awesome --
+
+## We configure the .xinitrc file ##
+exec xmonad
+
+## Here, we found the default awesome config
+mkdir -p .config/bspwm && cp bspwm-wm/bspwm/* ~/.config/bspwm/
+mkdir -p .config/sxhkd && cp bspwm-wm/sxhkd/* ~/.config/sxhkd/
+
+## rc.lua stores all the Awesome configuration, but not the themes, these are a 
+separate creator and arev stored in /usr/share/awesome/themes, we will see them later. ##
+
+## In case of installing picom, for its correct operation; it is configured in:
+doas nano /usr/share/examples/picom/picom.sample.conf
+    -- On Transparency/Opacity
+    inactive-opacity-override = true
+    # inactive-opacity-override = false;
+
