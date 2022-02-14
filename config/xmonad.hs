@@ -5,8 +5,7 @@ import System.Exit
 
 -- spawn
 import XMonad.Util.SpawnOnce
-import XMonad.Util.Run
-
+import XMonad.Util.Run(SpawnPipe)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
