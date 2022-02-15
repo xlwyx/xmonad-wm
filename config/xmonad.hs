@@ -11,6 +11,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import Graphics.X11.ExtraTypes.XF86
+import System.IO
 import XMonad.Hooks.DynamicLog
 
 import XMonad.Util.SpawnOnce
@@ -43,7 +44,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 altMask :: KeyMask
-altMask = nod1Mask
+altMask = mod1Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -54,7 +55,7 @@ altMask = nod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["\61728","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["term","web","code","files","mail","player","design","virtual","rss"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -67,7 +68,7 @@ myFocusedBorderColor = "#cff089"
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
     
     -- volume keys
     , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
@@ -77,8 +78,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- launch browser
+    , ((modm,               xK_w     ), spawn "Opera")
+    
+    -- launch mail
+    , ((modm,               xK_m     ), spawn "geary")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -105,7 +109,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_m     ), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
+    , ((altMask,               xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -255,7 +259,7 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = to
+myStartupHook = doo
     spawnOnce "picom &"
     spawnOnce "feh --bg-fill ~/Pictures/Varies/1.jpg &"
     spawnOnce "pulseaudio -D &"
@@ -276,7 +280,10 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
+main = do
+  --xmproc <- spawnpipe "xmobar -x 0 /home/tuxi/.config/xmobar/xmobarrc0"
+  xmproc <- spawnPipe "xmobar -x 1 /home/tuxi/.config/xmobar/xmobarrc1"
+  xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
