@@ -1,20 +1,16 @@
--- xmonad.hs
--- xmonad example config file.
+-- base
 --
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
-
 import XMonad
 import Data.Monoid
 import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
-import XMonad.Hooks.DynamicLog
 
+-- spawn
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Run(spawnPipe)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
