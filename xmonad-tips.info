@@ -10,8 +10,8 @@ xmonad xmonad-contrib stack ghc-bin haskell-language-server dmenu xscreensaver i
 exec xmonad
 
 ## Here, we found the default awesome config
-mkdir -p .config/bspwm && cp bspwm-wm/bspwm/* ~/.config/bspwm/
-mkdir -p .config/sxhkd && cp bspwm-wm/sxhkd/* ~/.config/sxhkd/
+cp xmonad-wm/xmonad/* ~/.xmonad/
+mkdir -p .config/xmobar/ && cp xmonad-wm/xmobarrc ~/.config/xmobar/xmobarrc0
 
 ## rc.lua stores all the Awesome configuration, but not the themes, these are a 
 separate creator and arev stored in /usr/share/awesome/themes, we will see them later. ##
