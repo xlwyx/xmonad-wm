@@ -1,7 +1,7 @@
 # Preparation:
 
 -- install --
-xmonad xmonad-contrib xterm ghc haskell-language-server dmenu xscreensaver imagemagick feh lxappearance arc-theme papirus-icon-theme opendoas hddtemp pcmanfm kitty picom
+xmonad xmonad-contrib stack ghc-bin haskell-language-server dmenu xscreensaver imagemagick feh lxappearance arc-theme papirus-icon-theme opendoas hddtemp pcmanfm kitty picom
 
 
 -- begain Awesome --
